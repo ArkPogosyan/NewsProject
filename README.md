@@ -1,1 +1,2 @@
 # NewsProject
+synergy progect django
