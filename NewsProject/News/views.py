@@ -9,7 +9,6 @@ def index(request):
     context = {
         'news': news,
         'title': 'Список новостей',
-        'categories': categories
     }
     return render(request, 'News/index.html', context=context)
 
@@ -20,7 +19,6 @@ def get_category(request, category_id):
     category = Category.objects.get(pk=category_id)
     context = {
         'news': news,
-        'categories': categories,
-        'category':category
+        'category': category
     }
     return render(request, 'News/category.html', context=context)
