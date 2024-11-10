@@ -28,7 +28,7 @@
             {% autoescape off %}
             <p class="card-text">{{ item.content|truncatewords:60|linebreaks }}</p>
             {% endautoescape %}
-            <a href="{{ item.get_absolute_url }}" class="btn btn-primary">Читать дальше...</a>
+            <a href="{{ item.get_absolute_url }}" class="btn btn-primary">Читать дальше</a>
         </div>
         </div>
         <div class="card-footer text-muted">
@@ -37,4 +37,3 @@
     </div>
    {% endfor %}
 {% endblock %}
-
