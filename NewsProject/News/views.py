@@ -1,8 +1,8 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, CreateView
-
 from .models import News, Category
 from .forms import NewsForm
+from django.core.paginator import Paginator
 
 
 class HomeNews(ListView):
@@ -10,6 +10,7 @@ class HomeNews(ListView):
     context_object_name = 'news'
     template_name = 'News/home_news_list.html'
     extra_context = {'title': 'Главная'}
+    paginate_by = 3
 
     def get_context_data(self, object_list=None,**kwargs):
         context = super().get_context_data(**kwargs)
@@ -25,6 +26,7 @@ class NewsByCategory(ListView):
     template_name = 'News/home_news_list.html'
     context_object_name = 'news'
     allow_empty = False
+    paginate_by = 3
 
     def get_context_data(self, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -86,3 +88,9 @@ class AddNews(CreateView):
 #         forms = NewsForm()
 #     return render(request, 'News/add_news.html', {'form': forms})
 
+# def test(request):
+#     objects = ['John', 'Paul', 'George', 'Ringo', 'John1', 'Paul1', 'George1', 'Ringo1']
+#     paginator = Paginator(object, 2)
+#     page_num = request.GET.get('page', 1)
+#     page_objects = paginator.get_page(page_num)
+#     return render(request, 'News/test.html', {'page_obj': page_objects})
