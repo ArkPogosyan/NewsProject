@@ -1,8 +1,47 @@
+from django.contrib import messages
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import ListView, DetailView, CreateView
 from .models import News, Category
-from .forms import NewsForm
+from .forms import NewsForm, UserRegisterForm, UserLoginForm
+from django.contrib.auth import login, logout, authenticate
+
+from django.urls import reverse_lazy
+
+
+from django.contrib.auth.forms import UserCreationForm
 from django.core.paginator import Paginator
+
+
+def register(request):
+    if request.method == 'POST':
+        form = UserRegisterForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Регистрация прошла успешно')
+            user = form.save()
+            login(request, user)
+        else:
+            messages.error(request, 'Ошибка регистрации')
+    else:
+        form = UserRegisterForm()
+    return render(request, 'News/register.html', {'form': form})
+
+
+def user_login(request):
+    if request.method == 'POST':
+        form = UserLoginForm(data=request.POST)
+        if form.is_valid():
+            user = form.get_user()
+            login(request, user)
+            return redirect('Home')
+    else:
+        form = UserLoginForm()
+    return render(request, 'News/login.html', {'form': form})
+
+
+def user_logout(request):
+    logout(request)
+    return redirect('Login')
 
 
 class HomeNews(ListView):
