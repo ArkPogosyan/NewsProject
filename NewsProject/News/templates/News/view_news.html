@@ -10,20 +10,23 @@
 {% endblock %}
 
 {% block content %}
-    <div class="card mb-3">
+    <div class="card mb-3" style="width: 1300px;">
+    {{ forloop.counter }}
         <div class="card-header">
-            Категория:<a href= "{{ item.category.get_absolute_url }}"> {{ news_item.category }} </a>
+            Категория:<a href= "{{ news_item.category.get_absolute_url }}"> {{ news_item.category }} </a>
         </div>
             <div class="card-body">
-                {% if item.photo %}
-                <img src="{{ news_item.photo.url }}" class = "mr-3" width="350" alt="Photo">
+                {% if news_item.photo %}
+                    <img src="{{ news_item.photo.url }}" class = "mr-3" width="500" alt="Photo" style="margin-left: 380px;>
                 {% else %}
-                <h6>Фото нет</h6>
+                    <h6>Фото нет</h6>
                 {% endif %}
             </div>
-                <h5 class="card-title {% cycle 'text-success' ' text-danger' 'text-primary' %}">{{ news_item.title }}</h5>
+                <h5 class="card-title {% cycle 'text-success' ' text-danger' 'text-primary' %}" style="margin-left: 600px; margin-top: 20px"> {{ news_item.title }} </h5>
                 {% autoescape off %}
+            <div class="content" style="margin: 15px;">
                 <p class="card-text">{{ news_item.content|linebreaks }}</p>
+            </div>
                 {% endautoescape %}
             <div class="card-footer text-muted">
                 {{ news_item.created_at|date:"Y-m-d H:i" }}

@@ -23,12 +23,12 @@
                         <h6>Фото нет</h6>
                     {% endif %}
                 </div>
-                <div class="media-body">
-                    <h5 class="card-title {% cycle 'text-success' ' text-danger' 'text-primary' %}">{{ item.title }}</h5>
+                <div class="media-body" style="margin-left: 40px;">
+                    <h5 class="card-title {% cycle 'text-success' ' text-danger' 'text-primary' %}" style='margin-left: 350px;'>{{ item.title }}</h5>
                         {% autoescape off %}
-                            <p class="card-text">{{ item.content|truncatewords:60|linebreaks }}</p>
+                            <p class="card-text">{{ item.content|truncatewords:100|linebreaks }}</p>
                         {% endautoescape %}
-                    <a href="{{ item.get_absolute_url }}" class="btn btn-primary">Читать дальше...</a>
+                    <a href="{{ item.get_absolute_url }}" class="btn btn-primary" style="margin-left: 350px;">Читать дальше...</a>
                 </div>
                 </div>
                 <div class="card-footer text-muted">

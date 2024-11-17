@@ -79,11 +79,13 @@ class NewsByCategory(ListView):
 class ViewNews(DetailView):
     model = News
     context_object_name = 'news_item'
+    template_name = 'News/view_news.html'
 
 
 class AddNews(CreateView):
     form_class = NewsForm
     template_name = 'News/add_news.html'
+    login_url = 'admin/'
 
 
 

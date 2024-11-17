@@ -15,7 +15,7 @@ class NewsAdminForm(forms.ModelForm):
 
 
 class NewsAdmin(admin.ModelAdmin):
-    list_display = ('id','category','title','content','created_at', 'get_photo', 'is_published')
+    list_display = ('id', 'category', 'title', 'content', 'created_at',  'get_photo', 'is_published')
     list_display_links = ('id', 'title')
     search_fields = ('title', 'content')
     list_filter = ('is_published', 'id')
